@@ -1,14 +1,14 @@
 package org.example.a_dao.util;
 
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import org.example.util.PropertiesLoader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-public final class ConnectionManager {
-    private ConnectionManager() {
-    }
+@UtilityClass
+public class ConnectionManager {
 
     static {
         try {
@@ -22,16 +22,11 @@ public final class ConnectionManager {
     private static final String USERNAME_KEY = "db.username";
     private static final String PASSWORD_KEY = "db.password";
 
-
+    @SneakyThrows
     public static Connection getConnection() {
-        try {
-            return DriverManager.getConnection(
-                    PropertiesLoader.getPropertyByKey(URL_KEY),
-                    PropertiesLoader.getPropertyByKey(USERNAME_KEY),
-                    PropertiesLoader.getPropertyByKey(PASSWORD_KEY));
-        } catch (SQLException sqlException) {
-            throw new RuntimeException(sqlException);
-        }
-
+        return DriverManager.getConnection(
+                PropertiesLoader.getPropertyByKey(URL_KEY),
+                PropertiesLoader.getPropertyByKey(USERNAME_KEY),
+                PropertiesLoader.getPropertyByKey(PASSWORD_KEY));
     }
 }

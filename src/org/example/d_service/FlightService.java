@@ -15,11 +15,14 @@ public class FlightService {
     private final FlightDataAccess flightDataAccess = FlightDataAccess.getDataAccess();
 
     public List<FlightDataTransfer> findAllFlightsDto() {
-        return flightDataAccess.findAll().stream().map(flight ->
-                new FlightDataTransfer(
-                        flight.getId(),
-                        "Departure airport: %s, Arrival airport: %s, Status: %s"
-                                .formatted(flight.getDepartureAirport(), flight.getArrivalAirport(), flight.getStatus())))
+        return flightDataAccess.findAll()
+                .stream()
+                .map(flight -> FlightDataTransfer.builder()
+                        .id(flight.getId())
+                        .description(
+                                "Departure airport: %s, Arrival airport: %s, Status: %s"
+                                        .formatted(flight.getDepartureAirport(), flight.getArrivalAirport(), flight.getStatus()))
+                        .build())
                 .collect(Collectors.toList());
     }
 

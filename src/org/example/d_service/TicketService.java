@@ -17,7 +17,11 @@ public class TicketService {
     public List<TicketDataTransfer> findAllTicketsDtoByFlightId(Long flightId) {
         return ticketDataAccess.findAllTicketsByFlightId(flightId)
                 .stream()
-                .map(ticket -> new TicketDataTransfer(ticket.getId(), ticket.getFlightId(), ticket.getSeatNumber()))
+                .map(ticket -> TicketDataTransfer.builder()
+                        .id(ticket.getId())
+                        .flightId(ticket.getFlightId())
+                        .seatNumber(ticket.getSeatNumber())
+                        .build())
                 .collect(Collectors.toList());
     }
 

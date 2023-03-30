@@ -1,1 +1,5 @@
 /.git/
+/.idea/
+/out/
+/out/artifacts/
+/out/production/
