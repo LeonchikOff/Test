@@ -21,7 +21,7 @@
     <label for="role">
         Role: <select name="role" id="role">
         <c:forEach items="${requestScope.roles}" var="role">
-        <option value="${role.toUpperCase()}">${role.toUpperCase()}</option>
+        <option value="${role}">${role}</option>
         </c:forEach>
     </select>
     </label><br>
@@ -31,6 +31,13 @@
         </c:forEach>
     </label><br>
     <button type="submit">Registration</button>
+    <div style="color: red">
+        <c:if test="${not empty requestScope.constraints}">
+            <c:forEach var="constraint" items="${requestScope.constraints}">
+                <span>Constraint: ${constraint.massage}</span><br>
+            </c:forEach>
+        </c:if>
+    </div>
 </form>
 </body>
 </html>
