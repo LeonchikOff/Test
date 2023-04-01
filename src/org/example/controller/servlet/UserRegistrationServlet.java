@@ -1,6 +1,6 @@
 package org.example.controller.servlet;
 
-import org.example.dto.UserDataTransfer;
+import org.example.dto.CreateUserTransfer;
 import org.example.service.UserService;
 import org.example.controller.util.RoutingUtil;
 import org.example.exception.ValidationException;
@@ -11,12 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
 @MultipartConfig(fileSizeThreshold = 1024*1024)
-@WebServlet("/registration")
+@WebServlet(RoutingUtil.UrlConstants.REGISTRATION)
 public class UserRegistrationServlet extends HttpServlet {
 
     private final UserService userService = UserService.getService();
@@ -30,7 +29,7 @@ public class UserRegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDataTransfer userDataTransfer = UserDataTransfer.builder()
+        CreateUserTransfer createUserTransfer = CreateUserTransfer.builder()
                 .avatar(req.getPart("avatar"))
                 .name(req.getParameter("username"))
                 .dateOfBirth(req.getParameter("birthDate"))
@@ -40,7 +39,7 @@ public class UserRegistrationServlet extends HttpServlet {
                 .gender(req.getParameter("gender"))
                 .build();
         try {
-            if (userService.createUserAndGetId(userDataTransfer) != null)
+            if (userService.createUserAndGetId(createUserTransfer) != null)
                 resp.sendRedirect("/login");
         } catch (ValidationException e) {
             req.setAttribute("constraints", e.getConstraints());

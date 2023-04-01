@@ -7,7 +7,7 @@ import javax.servlet.http.Part;
 
 @Value
 @Builder
-public class UserDataTransfer implements DataTransferableObject {
+public class CreateUserTransfer implements DataTransferableObject {
     Part avatar;
     String name;
     String dateOfBirth;

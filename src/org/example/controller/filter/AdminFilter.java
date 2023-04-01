@@ -1,6 +1,6 @@
 package org.example.controller.filter;
 
-import org.example.dto.UserDataTransfer;
+import org.example.dto.CreateUserTransfer;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        UserDataTransfer user = (UserDataTransfer) ((HttpServletRequest) servletRequest).getSession().getAttribute("user");
+        CreateUserTransfer user = (CreateUserTransfer) ((HttpServletRequest) servletRequest).getSession().getAttribute("user");
         if(user != null) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {

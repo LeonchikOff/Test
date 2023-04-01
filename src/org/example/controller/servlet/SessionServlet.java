@@ -1,6 +1,6 @@
 package org.example.controller.servlet;
 
-import org.example.dto.UserDataTransfer;
+import org.example.dto.CreateUserTransfer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +17,10 @@ public class SessionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        UserDataTransfer userDataTransfer = (UserDataTransfer) session.getAttribute(USER);
-        if(userDataTransfer == null) {
-            userDataTransfer = UserDataTransfer.builder().email("test@gmail.com").build();
-            session.setAttribute(USER, userDataTransfer);
+        CreateUserTransfer createUserTransfer = (CreateUserTransfer) session.getAttribute(USER);
+        if(createUserTransfer == null) {
+            createUserTransfer = CreateUserTransfer.builder().email("test@gmail.com").build();
+            session.setAttribute(USER, createUserTransfer);
         }
     }
 }
