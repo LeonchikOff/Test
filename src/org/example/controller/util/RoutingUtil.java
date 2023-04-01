@@ -21,6 +21,7 @@ public class RoutingUtil {
     public static class UrlConstants {
         public static final String LOGIN = "/login";
         public static final String REGISTRATION = "/registration";
+        public static final String AVATAR = "/images";
         public static final String FLIGHTS = "/flights";
         public static final String TICKETS = "/tickets";
     }

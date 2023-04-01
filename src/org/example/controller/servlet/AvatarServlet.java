@@ -1,6 +1,7 @@
 package org.example.controller.servlet;
 
 import lombok.SneakyThrows;
+import org.example.controller.util.RoutingUtil;
 import org.example.service.AvatarService;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 
-@WebServlet("/images/*")
+@WebServlet(RoutingUtil.UrlConstants.AVATAR + "/*")
 public class AvatarServlet extends HttpServlet {
     private final AvatarService avatarService = AvatarService.getAvatarService();
 

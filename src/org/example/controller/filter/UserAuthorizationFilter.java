@@ -14,7 +14,7 @@ import java.util.Set;
 public class UserAuthorizationFilter implements Filter {
 
     private static final Set<String> PUBLICLY_AVAILABLE_URIS = Set.of(
-            RoutingUtil.UrlConstants.LOGIN, RoutingUtil.UrlConstants.REGISTRATION);
+            RoutingUtil.UrlConstants.LOGIN, RoutingUtil.UrlConstants.REGISTRATION, RoutingUtil.UrlConstants.AVATAR);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
