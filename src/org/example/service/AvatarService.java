@@ -8,8 +8,10 @@ import org.example.util.PropertiesLoader;
 
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AvatarService {
@@ -26,5 +28,13 @@ public class AvatarService {
             Files.write(avatarFullPath, inputStreamContent.readAllBytes(),
                     StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         }
+    }
+
+    @SneakyThrows
+    public Optional<InputStream> getAvatar(String avatarPath) {
+        Path avatarFullPath = Path.of(basePathImg, avatarPath);
+        System.out.println(avatarFullPath);
+        return Files.exists(avatarFullPath)
+                ? Optional.of(Files.newInputStream(avatarFullPath)) : Optional.empty();
     }
 }

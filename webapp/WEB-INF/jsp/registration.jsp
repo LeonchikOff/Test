@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<img src="${pageContext.request.contextPath}/images/avatars/U3DqjLhrNNc.jpg" alt="User avatar">
 <form action="${pageContext.request.contextPath}/registration" method="post" enctype="multipart/form-data">
     <label>
         Avatar: <input type="file" name="avatar" id="avatar">
@@ -24,7 +25,7 @@
     <label for="role">
         Role: <select name="role" id="role">
         <c:forEach items="${requestScope.roles}" var="role">
-        <option value="${role}">${role}</option>
+            <option value="${role}">${role}</option>
         </c:forEach>
     </select>
     </label><br>
