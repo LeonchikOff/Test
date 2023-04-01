@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/registration" method="post">
+<form action="${pageContext.request.contextPath}/registration" method="post" enctype="multipart/form-data">
+    <label>
+        Avatar: <input type="file" name="avatar" id="avatar">
+    </label><br>
     <label for="username">
         Name: <input type="text" name="username" id="username">
     </label><br>

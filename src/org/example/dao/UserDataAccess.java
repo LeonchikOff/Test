@@ -16,8 +16,8 @@ import java.util.Optional;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDataAccess implements DataAccessibleObject<User, Integer> {
     private static final UserDataAccess DATA_ACCESS = new UserDataAccess();
-    private static final String SQL_INSERT_USER_ENTITY = "insert into users(name, birthday, email, password, role, gender) " +
-                                                         "values (?,?,?,?,?,?)";
+    private static final String SQL_INSERT_USER_ENTITY = "insert into users(avatar, name, birthday, email, password, role, gender) " +
+                                                         "values (?,?,?,?,?,?,?)";
 
     @Override
     @SneakyThrows
@@ -25,12 +25,13 @@ public class UserDataAccess implements DataAccessibleObject<User, Integer> {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(SQL_INSERT_USER_ENTITY, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setObject(1, entity.getName());
-            preparedStatement.setObject(2, entity.getDateOfBirth());
-            preparedStatement.setObject(3, entity.getEmail());
-            preparedStatement.setObject(4, entity.getPassword());
-            preparedStatement.setObject(5, entity.getRole().name());
-            preparedStatement.setObject(6, entity.getGender().name());
+            preparedStatement.setObject(1, entity.getAvatar());
+            preparedStatement.setObject(2, entity.getName());
+            preparedStatement.setObject(3, entity.getDateOfBirth());
+            preparedStatement.setObject(4, entity.getEmail());
+            preparedStatement.setObject(5, entity.getPassword());
+            preparedStatement.setObject(6, entity.getRole().name());
+            preparedStatement.setObject(7, entity.getGender().name());
             preparedStatement.executeUpdate();
             ResultSet generatedIdResultSet = preparedStatement.getGeneratedKeys();
             generatedIdResultSet.next();

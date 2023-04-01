@@ -4,17 +4,17 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.model.Gender;
-import org.example.dto.UserForCreateDataTransfer;
+import org.example.dto.UserDataTransfer;
 import org.example.service.util.LocalDateFormatter;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserForCreateValidator implements Validator<UserForCreateDataTransfer> {
+public class UserDTOValidator implements Validator<UserDataTransfer> {
     @Getter
-    private static final UserForCreateValidator validator = new UserForCreateValidator();
+    private static final UserDTOValidator validator = new UserDTOValidator();
 
 
     @Override
-    public ValidationResult validate(UserForCreateDataTransfer userForCreate) {
+    public ValidationResult validate(UserDataTransfer userForCreate) {
         ValidationResult validationResult = new ValidationResult();
         if(!LocalDateFormatter.isValid(userForCreate.getDateOfBirth()))
             validationResult.addConstraint(Constraint.of("Invalid date of birth", "Date of Birth is not valid"));

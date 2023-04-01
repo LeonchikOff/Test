@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Builder
 public class User {
     private Integer id;
+    private String avatar;
     private String name;
     private LocalDate dateOfBirth;
     private String email;

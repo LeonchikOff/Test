@@ -3,9 +3,12 @@ package org.example.dto;
 import lombok.Builder;
 import lombok.Value;
 
+import javax.servlet.http.Part;
+
 @Value
 @Builder
-public class UserForCreateDataTransfer implements DataTransferableObject {
+public class UserDataTransfer implements DataTransferableObject {
+    Part avatar;
     String name;
     String dateOfBirth;
     String email;
